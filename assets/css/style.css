@@ -41,7 +41,22 @@ main {
 p {
   font-size: 1.2rem;
 }
+/* Header styles */
+.hero {
+    padding: 3% 4%;
+    background: rgb(111,144,208);
+background: linear-gradient(90deg, rgba(111,144,208,1) 0%, rgba(29,116,253,1) 46%, rgba(49,15,121,1) 100%);
+  }
+  
+  .hero p {
+    max-width: 75%;
+  }
 
+  .app-title {
+      color: var(--primary);
+      display: flex;
+      justify-content: center;
+  }
 /* Button Styling Starts */
 .btn {
     font-size: 1.3rem;

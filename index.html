@@ -7,7 +7,46 @@
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
-<body>
+<body class="flex-column min-100-vh">
+    <header class="hero">
+      <h1 class="app-title"><i class="fab fa-github"></i> Weather Dashboard</h1>
+     </header>
+  
+  
+    <main class="flex-row justify-space-between">
+      <div class="col-12 col-md-4">
+        <div class="card">
+          <h3 class="card-header text-uppercase">Search for a City:</h3>
+          <form id="user-form" class="card-body">
+            <label class="form-label" for="username"></label>
+            <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="btn">Search</button>
+          </form>
+        </div>
+  
+        <div class="card">
+          <h3 class="card-header text-uppercase"></h3>
+          <div id="language-buttons" class="card-body">
+            <button data-language="javascript" class="btn"></button>
+            <button data-language="html" class="btn"></button>
+            <button data-language="css" class="btn"></button>
+            <button data-language="css" class="btn"></button>
+            <button data-language="css" class="btn"></button>
+            <button data-language="css" class="btn"></button>
+            <button data-language="css" class="btn"></button>
+            <button data-language="css" class="btn"></button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 col-md-8">
+        <h2 class="subtitle">City will go here <span id="repo-search-term"></span></h2>
+        <div id="repos-container" class="list-group">
+  
+        </div>
+      </div>
+    </main>
+  
     
 
     <script type="text/javascript" src="assets/js/script.js"></script>

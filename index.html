@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="assets/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 </head>
 <body class="flex-column min-100-vh">
     <header class="hero">
@@ -19,11 +21,11 @@
           <h3 class="card-header text-uppercase">Search for a City:</h3>
           <form id="user-form" class="card-body">
             <label class="form-label" for="username"></label>
-            <input name="username" id="username" type="text" autofocus="true" class="form-input" />
-            <button type="submit" class="btn">Search</button>
+            <input name="username" id="username" type="text" autofocus="true" placeholder="Search for a City" class="form-input" />
+            <button class="btn btn-tertiary" >Search</button>
           </form>
         </div>
-  
+  <!-- Saved Cities -->
         <div class="card">
           <h3 class="card-header text-uppercase"></h3>
           <div id="language-buttons" class="card-body">
@@ -38,12 +40,15 @@
           </div>
         </div>
       </div>
-  
-      <div class="col-12 col-md-8">
-        <h2 class="subtitle">City will go here <span id="repo-search-term"></span></h2>
-        <div id="repos-container" class="list-group">
-  
-        </div>
+  <!-- Weather -->
+      <div class="col-12 col-md-8 weather">
+        <h2 class="subtitle city">Weather <span id="repo-search-term"></span></h2>
+        <div id="repos-container" class="list-group temp">51</div>
+        <img src="" alt="" class="icon" />
+        <div class="date">Date</div>
+        <div class="humidity">Humidity</div>
+        <div class="wind">Wind</div>
+        <div class="UV">UV</div>
       </div>
     </main>
   

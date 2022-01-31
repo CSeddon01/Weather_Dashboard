@@ -1,7 +1,7 @@
 :root {
     --primary: white;
     --secondary: #9caea9;
-    --tertiary: #788585;
+    --tertiary: #1DA1F2;;
     --light-dark: #6f6866;
     --dark: #38302e;
     --border-radius: .3rem;
@@ -74,11 +74,14 @@ background: linear-gradient(90deg, rgba(111,144,208,1) 0%, rgba(29,116,253,1) 46
     transform: translate(-1px, -1px);
   }
   
+  .btn-tertiary {
+    background: var(--tertiary);
+  }
    .btn:hover {
     color: var(--primary);
     background-color: var(--tertiary);
-    transform: translate(0, 0);
-    box-shadow: 2px 2px var(--dark);
+    /* transform: translate(0, 0); */
+    /* box-shadow: 2px 2px var(--dark); */
   }
   
   .btn-inline {
@@ -91,8 +94,8 @@ background: linear-gradient(90deg, rgba(111,144,208,1) 0%, rgba(29,116,253,1) 46
     border: none;
     outline: none;
     background-color: var(--light-dark);
-    box-shadow: 3px 3px var(--secondary);
-    transform: translate(-1px, -1px);
+    /* box-shadow: 3px 3px var(--secondary); */
+    /* transform: translate(-1px, -1px); */
     display: inline-block;
     width: auto;
     margin-top: 20px;
@@ -104,8 +107,8 @@ background: linear-gradient(90deg, rgba(111,144,208,1) 0%, rgba(29,116,253,1) 46
    .btn-back:hover {
     color: var(--primary);
     background-color: var(--tertiary);
-    transform: translate(0, 0);
-    box-shadow: 2px 2px var(--dark);
+    /* transform: translate(0, 0);
+    box-shadow: 2px 2px var(--dark); */
   }
   
   /* FORM */

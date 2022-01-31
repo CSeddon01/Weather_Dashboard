@@ -4,7 +4,7 @@ let weather = {
       fetch(
         "https://api.openweathermap.org/data/2.5/weather?q=" +
         city +
-        "&units=metric&appid=" +
+        "&units=imperial&appid=" +
         this.apiKey
     )
       .then((response) => response.json())
@@ -17,10 +17,10 @@ let weather = {
     const { temp, humidity } = data.main;
     const { speed } = data.wind;
     console.log(name, icon, temp, humidity, speed);
-    document.querySelector(".city").innerText = "Weather in " + name;
+    document.querySelector(".city").innerText = name;
     document.querySelector(".icon").src ="http://openweathermap.org/img/wn/" + icon + ".png";
     document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
-    document.querySelector(".wind").innerText = "Wind speed: " + speed + " km/h";
-    document.querySelector(".temp").innerText = temp + "°C";
+    document.querySelector(".wind").innerText = "Wind: " + speed + " MPH";
+    document.querySelector(".temp").innerText = "Temp: " + temp + "°F";
   }
 }

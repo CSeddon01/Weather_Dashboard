@@ -42,8 +42,12 @@
       </div>
   <!-- Weather -->
       <div class="col-12 col-md-8 weather">
-        <h2 class="city date icon"><span>city date icon </span></h2>
+        <div class="flex-row justify-space-between">
+          <h2 class="city"></h2>
+          <h2 class="currentDay"></h2>
+          <img  class="icon" />
         <br>
+        </div>
         <div id="repos-container" class="list-group temp"></div>
         <br>
         <div class="wind">Wind</div>
@@ -54,8 +58,7 @@
       </div>
     </main>
   
-    
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>

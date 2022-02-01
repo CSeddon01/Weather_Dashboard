@@ -12,6 +12,7 @@ let weather = {
   },
 
   displayWeather: function(data) {
+
     const { name } = data;
     const { icon } = data.weather[0];
     const { temp, humidity } = data.main;
@@ -22,5 +23,24 @@ let weather = {
     document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
     document.querySelector(".wind").innerText = "Wind: " + speed + " MPH";
     document.querySelector(".temp").innerText = "Temp: " + temp + "°F";
-  }
+  },
+  search: function () {
+    this.fetchWeather(document.querySelector(".search-bar").value);
+  },
 }
+
+document.querySelector(".search button").addEventListener("click", function () {
+  weather.search();
+  console.log("hi");
+ 
+});
+
+// document
+//   .querySelector(".search-bar")
+//   .addEventListener("keyup", function (event) {
+//     if (event.key == "Enter") {
+//       weather.search();
+//     }
+//   });
+
+// weather.fetchWeather();

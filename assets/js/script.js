@@ -1,7 +1,7 @@
 
 // Saving the current date
 let today = new Date().toLocaleDateString();
-console.log(today);
+// console.log(today);
 
 // API key from openweathermap.org
 let weather = {
@@ -16,7 +16,7 @@ let weather = {
       .then((response) => response.json())
       .then((data) => this.displayWeather(data));
   },
- 
+
   // Retrieve items from weather service and attaches them to the proper class
   displayWeather: function(data) {
     const { name } = data;
@@ -25,8 +25,11 @@ let weather = {
     const { speed } = data.wind;
     const  lat  = data.coord.lat;
     const  lon  = data.coord.lon;
-    const { uvIndex } = data.current.uvi;
-    console.log(name, icon, temp, humidity, speed, lat, lon, uvIndex);
+    // const uvIndex  = data.current;
+    console.log("datalat" + lat);
+    console.log("datalon" + lon);
+    console.log(data);
+    // console.log(name, icon, temp, humidity, speed, lat, lon);
     var latLonPair = lat.toString() + " " + lon.toString();
     localStorage.setItem(name, latLonPair);
     document.querySelector(".currentDay").innerText = " " + today + " ";
@@ -35,24 +38,22 @@ let weather = {
     document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
     document.querySelector(".wind").innerText = "Wind: " + speed + " MPH";
     document.querySelector(".temp").innerText = "Temp: " + temp + "°F";
-    document.querySelector("UV Index:" + uvIndex);
+    weather.latLon(lat, lon);
   },
   // Links the function to the search button
   search: function () {
     this.fetchWeather(document.querySelector(".search-bar").value);
   },
-  latLon: function(position) {
-    const {latitude, longitude} = position.coords;
-    api = `https://api.openweathermap.org/data/2.5/weather?"
-    lat=${latitude}&lon=${longitude}&units=metric&appid=c369f155016b5438a2e3977424bf7b67`;
-    fetchData();
+  latLon: function(lat, lon) {
+    const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=c369f155016b5438a2e3977424bf7b67`;
+  fetch(api)
+  .then((response) => response.json())
+      .then((input) => this.displayUVI(input));
   },
-  // displayUVI: function() {
-  // const  uvIndex  = data.current.uvi;
-  //   document.querySelector(".UV").innerText = "UV Index:" + uvIndex;
-  //   console.log("hi" + displayUVI);
-  // },
-  
+displayUVI: function (input) {
+  const { uvi } = input.current;
+  document.querySelector(".UV").innerText = "UV Index: " + uvi;
+}  
 }
 
 // Event listener for the search button click
@@ -69,4 +70,3 @@ document
     }
   });
 
-// weather.fetchWeather();

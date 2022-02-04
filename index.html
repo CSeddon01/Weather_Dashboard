@@ -54,8 +54,15 @@
         <br>
         <div class="humidity">Humidity:</div>
         <br>
-        <div class="UV">UV:</div>
+        <div id="UV" class="UV" onkeyup="displayUVI()" >No value</div>
       </div>
+
+      <!-- 5 day forecast -->
+      <div class="row" id="five-day-forecast">
+        <div class="card-deck w-100">
+        </div>
+      </div>
+      
     </main>
   
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

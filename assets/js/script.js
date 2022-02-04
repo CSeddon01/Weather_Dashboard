@@ -44,15 +44,32 @@ let weather = {
   search: function () {
     this.fetchWeather(document.querySelector(".search-bar").value);
   },
+  // Fetch second API
   latLon: function(lat, lon) {
     const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=c369f155016b5438a2e3977424bf7b67`;
   fetch(api)
   .then((response) => response.json())
       .then((input) => this.displayUVI(input));
   },
+
+  // Displays UVI and color codes
 displayUVI: function (input) {
+  var msg;
   const { uvi } = input.current;
   document.querySelector(".UV").innerText = "UV Index: " + uvi;
+  if (uvi <= 2) {
+    document.getElementById("UV").style.color = "green";
+    msg = "Good";
+  }
+  else if ((uvi > 2) && (uvi <= 5)) {
+    document.getElementById("UV").style.color = "orange";
+    msg = "Okay";
+  }
+  else if ((uvi > 5) && (uvi <= 7)) {
+    document.getElementById("UV").style.color = "red";
+    msg = "Not Good";
+  }
+  
 }  
 }
 
@@ -70,3 +87,4 @@ document
     }
   });
 
+ 

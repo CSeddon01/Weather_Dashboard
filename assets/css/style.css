@@ -41,11 +41,34 @@ main {
 p {
   font-size: 1.2rem;
 }
+
+.weather-forecast{
+  background-color: var(--light-dark);
+  color: var(--primary);
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  align-items: stretch;
+  margin: 0.5rem!important;
+  text-align: left;
+  padding: 6rem 10rem;
+
+}
+
+.wf2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--secondary);
+  max-width: 16%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
 /* Header styles */
 .hero {
     padding: 3% 4%;
     background: rgb(111,144,208);
-background: linear-gradient(90deg, rgba(111,144,208,1) 0%, rgba(29,116,253,1) 46%, rgba(49,15,121,1) 100%);
+    background: linear-gradient(90deg, rgba(111,144,208,1) 0%, rgba(29,116,253,1) 46%, rgba(49,15,121,1) 100%);
   }
   
   .hero p {
@@ -94,8 +117,6 @@ background: linear-gradient(90deg, rgba(111,144,208,1) 0%, rgba(29,116,253,1) 46
     border: none;
     outline: none;
     background-color: var(--light-dark);
-    /* box-shadow: 3px 3px var(--secondary); */
-    /* transform: translate(-1px, -1px); */
     display: inline-block;
     width: auto;
     margin-top: 20px;
@@ -107,8 +128,7 @@ background: linear-gradient(90deg, rgba(111,144,208,1) 0%, rgba(29,116,253,1) 46
    .btn-back:hover {
     color: var(--primary);
     background-color: var(--tertiary);
-    /* transform: translate(0, 0);
-    box-shadow: 2px 2px var(--dark); */
+    
   }
   
   /* FORM */

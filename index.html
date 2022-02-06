@@ -30,15 +30,7 @@
         <!-- Saved Cities -->
         <div class="card">
           <h3 class="card-header text-uppercase"></h3>
-          <div id="language-buttons" class="card-body">
-            <button data-language="javascript" class="btn"></button>
-            <button data-language="html" class="btn"></button>
-            <button data-language="css" class="btn"></button>
-            <button data-language="css" class="btn"></button>
-            <button data-language="css" class="btn"></button>
-            <button data-language="css" class="btn"></button>
-            <button data-language="css" class="btn"></button>
-            <button data-language="css" class="btn"></button>
+          <div id="savedCities" class="card-body">
           </div>
         </div>
       </div>
@@ -60,10 +52,20 @@
       </div>
 
       <!-- 5 day forecast -->
-      <div >
-        <h2>5-day Forecast:</h2>
-        <div id="forecast" class="weather-forecast"></div>
-      </div>
+      
+        <table id="forecast" >
+          <thead>
+            <tr>
+              <th>Day:</th>
+              <th>Temp:</th>
+              <th>Icon:</th>
+              <th>Wind:</th>
+              <th>Humidity:</th>
+            </tr>
+          </thead>
+          <tbody id="forecastTable" class="weather-forecast">
+          </tbody>
+          </table>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>

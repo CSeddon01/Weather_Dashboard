@@ -45,25 +45,9 @@ p {
 .weather-forecast{
   background-color: var(--light-dark);
   color: var(--primary);
-  display: flex;
-  flex-wrap: wrap;
-  /* justify-content: center; */
-  align-items: stretch;
-  margin: 0.5rem!important;
-  text-align: left;
-  padding: 6rem 10rem;
-
+  border: solid 1px black;
 }
 
-.wf2 {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--secondary);
-  max-width: 16%;
-  padding-right: 15px;
-  padding-left: 15px;
-}
 /* Header styles */
 .hero {
     padding: 3% 4%;

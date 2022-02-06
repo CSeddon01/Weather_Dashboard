@@ -27,8 +27,32 @@ let weather = {
     console.log("datalat" + lat);
     console.log("datalon" + lon);
     console.log(data);
-    var latLonPair = lat.toString() + " " + lon.toString();
-    localStorage.setItem(name, latLonPair);
+    // var latLonPair = lat.toString() + " " + lon.toString();
+    // localStorage.setItem(name, latLonPair);
+    var searchHistory = localStorage.getItem("searchHistory");
+    if(!searchHistory) {
+      searchHistory = name
+    } else {
+      searchHistory = searchHistory + "," + name;
+    }
+    var historyArray = searchHistory.split(",");
+    var citiesEl = document.getElementById("savedCities");
+    citiesEl.innerHTML = "";
+    for(var i = 0; i < historyArray.length; i++) {
+      const city = historyArray[i];
+      var firstCity = document.createElement("button");
+      firstCity.value = city;
+      firstCity.textContent = city;
+      firstCity.className = "btn btn-tertiary";
+      var clickHandler = () => {
+        console.log("called event", city);
+        weather.search(city); 
+      }
+      firstCity.addEventListener("click", clickHandler);
+      citiesEl.appendChild(firstCity);
+    }
+   
+    localStorage.setItem("searchHistory", searchHistory);
     document.querySelector(".currentDay").innerText = " " + today + " ";
     document.querySelector(".city").innerText = name;
     document.querySelector(".icon").src =
@@ -40,8 +64,8 @@ let weather = {
     weather.latLon(lat, lon);
   },
   // Links the function to the search button
-  search: function () {
-    this.fetchWeather(document.querySelector(".search-bar").value);
+  search: function (city) {
+    this.fetchWeather(city);
   },
   // Fetch UV Index API
   latLon: function (lat, lon) {
@@ -53,7 +77,6 @@ let weather = {
 
   // Displays UVI and color codes
   displayUVI: function (input) {
-    
     const { uvi } = input.current;
     document.querySelector(".UV").innerText = "UV Index: " + uvi;
     if (uvi <= 2) {
@@ -64,10 +87,12 @@ let weather = {
       document.querySelector(".UV").innerText = "UV index: " + uvi + " Okay";
     } else if (uvi > 5 && uvi <= 7) {
       document.getElementById("UV").style.color = "red";
-      document.querySelector(".UV").innerText = "UV index: " + uvi + " Not Good";
+      document.querySelector(".UV").innerText =
+        "UV index: " + uvi + " Not Good";
     }
-
-    for (var i = 1; i <=6 ; i++) {
+    var table1 = document.getElementById("forecastTable");
+    table1.innerHTML = "";
+    for (var i = 1; i <= 5; i++) {
       const { dt } = input.daily[i];
       const temp = input.daily[i].temp.max;
       const { icon } = input.daily[i].weather[0];
@@ -75,31 +100,51 @@ let weather = {
       const { humidity } = input.daily[i];
       var dayname = new Date(dt * 1000).toLocaleDateString();
       var iconImage = "https://openweathermap.org/img/wn/" + icon + ".png";
-      // var forecast = $(".forecast");
-      // forecast.innerText = dayname;
-      // forecast.innerText = innerText = "Temp: " + temp + "°F";
-      // forecast.innerText = iconImage;
-      // forecast.innerText = innerText = "Wind: " + wind_speed + " MPH";
-      // forecast.innerText = innerText = "Humidity: " + humidity + "%";
-      // container.append(forecast);
+
       console.log(dt, temp, wind_speed, humidity, iconImage);
-    
-      var div= document.createElement("td");
-      div.innerHTML = dayname;
-      div.innerHTML = "Temp: " + temp + "°F";
-      div.innerHTML = iconImage;
-      div.innerHTML = "Wind: " + wind_speed + " MPH";
-      div.innerHTML = "Humidity: " + humidity + "%";
-      document.getElementById("forecast").appendChild(div);
-    
+     
+      var rowrow = document.createElement("tr");
+        var cell1 = document.createElement("td");
+        var text1 = document.createTextNode(dayname);
+
+        var cell2 = document.createElement("td");
+        var text2 = document.createTextNode(temp + "°F");
+
+        var cell3 = document.createElement("td");
+        var img = document.createElement("img");
+        img.src= iconImage;
+      
+
+        var cell4 = document.createElement("td");
+        var text4 = document.createTextNode(wind_speed + " MPH");
+
+        var cell5 = document.createElement("td");
+        var text5 = document.createTextNode(humidity + "%");
+
+        cell1.appendChild(text1);
+        rowrow.appendChild(cell1);
+
+        cell2.appendChild(text2);
+        rowrow.appendChild(cell2);
+
+        cell3.appendChild(img);
+        rowrow.appendChild(cell3);
+
+        cell4.appendChild(text4);
+        rowrow.appendChild(cell4);
+
+        cell5.appendChild(text5);
+        rowrow.appendChild(cell5);
+      
+      table1.appendChild(rowrow);
     }
-    console.log("Daily", input);
   },
 };
 
 // Event listener for the search button click
 document.querySelector(".search button").addEventListener("click", function () {
-  weather.search();
+  var city = document.querySelector(".search-bar").value
+  weather.search(city);
 });
 
 // Added an enter button click event listener

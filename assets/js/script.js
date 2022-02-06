@@ -61,10 +61,10 @@ let weather = {
       document.querySelector(".UV").innerText = "UV index: " + uvi + " Good";
     } else if (uvi > 2 && uvi <= 5) {
       document.getElementById("UV").style.color = "orange";
-      msg = " Okay";
+      document.querySelector(".UV").innerText = "UV index: " + uvi + " Okay";
     } else if (uvi > 5 && uvi <= 7) {
       document.getElementById("UV").style.color = "red";
-      msg = " Not Good";
+      document.querySelector(".UV").innerText = "UV index: " + uvi + " Not Good";
     }
 
     for (var i = 1; i <=6 ; i++) {
@@ -75,18 +75,23 @@ let weather = {
       const { humidity } = input.daily[i];
       var dayname = new Date(dt * 1000).toLocaleDateString();
       var iconImage = "https://openweathermap.org/img/wn/" + icon + ".png";
-      var forecast = $(".forecast");
-      forecast.innerText = dayname;
-      forecast.innerText = innerText = "Temp: " + temp + "°F";
-      forecast.innerText = iconImage;
-      forecast.innerText = innerText = "Wind: " + wind_speed + " MPH";
-      forecast.innerText = innerText = "Humidity: " + humidity + "%";
+      // var forecast = $(".forecast");
+      // forecast.innerText = dayname;
+      // forecast.innerText = innerText = "Temp: " + temp + "°F";
+      // forecast.innerText = iconImage;
+      // forecast.innerText = innerText = "Wind: " + wind_speed + " MPH";
+      // forecast.innerText = innerText = "Humidity: " + humidity + "%";
       // container.append(forecast);
       console.log(dt, temp, wind_speed, humidity, iconImage);
-    function addElement () {
-      const newDiv = document.createElement("div");
-      const newContent 
-    } 
+    
+      var div= document.createElement("td");
+      div.innerHTML = dayname;
+      div.innerHTML = "Temp: " + temp + "°F";
+      div.innerHTML = iconImage;
+      div.innerHTML = "Wind: " + wind_speed + " MPH";
+      div.innerHTML = "Humidity: " + humidity + "%";
+      document.getElementById("forecast").appendChild(div);
+    
     }
     console.log("Daily", input);
   },

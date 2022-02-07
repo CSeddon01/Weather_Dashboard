@@ -46,6 +46,11 @@ p {
   background-color: var(--light-dark);
   color: var(--primary);
   border: solid 1px black;
+  margin: 0 1000px;
+}
+
+.weather {
+  border: solid 1px black;
 }
 
 /* Header styles */

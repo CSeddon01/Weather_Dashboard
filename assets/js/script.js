@@ -24,21 +24,18 @@ let weather = {
     const { speed } = data.wind;
     const lat = data.coord.lat;
     const lon = data.coord.lon;
-    console.log("datalat" + lat);
-    console.log("datalon" + lon);
-    console.log(data);
-    // var latLonPair = lat.toString() + " " + lon.toString();
-    // localStorage.setItem(name, latLonPair);
+
+    // Create local storage
     var searchHistory = localStorage.getItem("searchHistory");
-    if(!searchHistory) {
-      searchHistory = name
+    if (!searchHistory) {
+      searchHistory = name;
     } else {
       searchHistory = searchHistory + "," + name;
     }
     var historyArray = searchHistory.split(",");
     var citiesEl = document.getElementById("savedCities");
     citiesEl.innerHTML = "";
-    for(var i = 0; i < historyArray.length; i++) {
+    for (var i = 0; i < historyArray.length; i++) {
       const city = historyArray[i];
       var firstCity = document.createElement("button");
       firstCity.value = city;
@@ -46,12 +43,12 @@ let weather = {
       firstCity.className = "btn btn-tertiary";
       var clickHandler = () => {
         console.log("called event", city);
-        weather.search(city); 
-      }
+        weather.search(city);
+      };
       firstCity.addEventListener("click", clickHandler);
       citiesEl.appendChild(firstCity);
     }
-   
+
     localStorage.setItem("searchHistory", searchHistory);
     document.querySelector(".currentDay").innerText = " " + today + " ";
     document.querySelector(".city").innerText = name;
@@ -90,6 +87,8 @@ let weather = {
       document.querySelector(".UV").innerText =
         "UV index: " + uvi + " Not Good";
     }
+
+    // Create table for 5 day forecast
     var table1 = document.getElementById("forecastTable");
     table1.innerHTML = "";
     for (var i = 1; i <= 5; i++) {
@@ -100,42 +99,29 @@ let weather = {
       const { humidity } = input.daily[i];
       var dayname = new Date(dt * 1000).toLocaleDateString();
       var iconImage = "https://openweathermap.org/img/wn/" + icon + ".png";
-
-      console.log(dt, temp, wind_speed, humidity, iconImage);
-     
       var rowrow = document.createElement("tr");
-        var cell1 = document.createElement("td");
-        var text1 = document.createTextNode(dayname);
+      var cell1 = document.createElement("td");
+      var text1 = document.createTextNode(dayname);
+      var cell2 = document.createElement("td");
+      var text2 = document.createTextNode(temp + "°F");
+      var cell3 = document.createElement("td");
+      var img = document.createElement("img");
+        img.src = iconImage;
+      var cell4 = document.createElement("td");
+      var text4 = document.createTextNode(wind_speed + " MPH");
+      var cell5 = document.createElement("td");
+      var text5 = document.createTextNode(humidity + "%");
 
-        var cell2 = document.createElement("td");
-        var text2 = document.createTextNode(temp + "°F");
-
-        var cell3 = document.createElement("td");
-        var img = document.createElement("img");
-        img.src= iconImage;
-      
-
-        var cell4 = document.createElement("td");
-        var text4 = document.createTextNode(wind_speed + " MPH");
-
-        var cell5 = document.createElement("td");
-        var text5 = document.createTextNode(humidity + "%");
-
-        cell1.appendChild(text1);
-        rowrow.appendChild(cell1);
-
-        cell2.appendChild(text2);
-        rowrow.appendChild(cell2);
-
-        cell3.appendChild(img);
-        rowrow.appendChild(cell3);
-
-        cell4.appendChild(text4);
-        rowrow.appendChild(cell4);
-
-        cell5.appendChild(text5);
-        rowrow.appendChild(cell5);
-      
+      cell1.appendChild(text1);
+      rowrow.appendChild(cell1);
+      cell2.appendChild(text2);
+      rowrow.appendChild(cell2);
+      cell3.appendChild(img);
+      rowrow.appendChild(cell3);
+      cell4.appendChild(text4);
+      rowrow.appendChild(cell4);
+      cell5.appendChild(text5);
+      rowrow.appendChild(cell5);
       table1.appendChild(rowrow);
     }
   },
@@ -143,7 +129,7 @@ let weather = {
 
 // Event listener for the search button click
 document.querySelector(".search button").addEventListener("click", function () {
-  var city = document.querySelector(".search-bar").value
+  var city = document.querySelector(".search-bar").value;
   weather.search(city);
 });
 
